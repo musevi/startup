@@ -9,4 +9,8 @@ We’ve all been in a situation where we weren’t as productive as we could hav
 
 Key features
 
--
+- Secure login over HTTPS
+- Add and save your goals
+- Set an accountability buddy for each goal
+- Buddies are notified when you complete/fail a goal
+- Set your own penalty for each goal
