@@ -1,10 +1,12 @@
-# startup
-Startup project for CS260
+# Acountability
+
+## Design
+
+We’ve all been in a situation where we weren’t as productive as we could have been. Maybe you set a deadline to finish something but didn’t reach your goal because Netflix was more enticing. After all, no one else was holding you to your commitment. Enter Accountability, a peer-to-peer website where you share your goals with a friend, along with a monetary penalty. If you don’t complete your goal by the deadline, you owe your friend the penalty you set!!
 
 
-I'm editing this file as part of the assignment.
+![Mock](ProjectSketch.png)
 
+Key features
 
-Here's the second edit from GitHub 2merge.
-
-VScode has some neat features that help integrate it into github.
+-
