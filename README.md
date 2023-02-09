@@ -14,3 +14,6 @@ Key features
 - Set an accountability buddy for each goal
 - Buddies are notified when you complete/fail a goal
 - Set your own penalty for each goal
+
+Update Feb 8
+When trying to upload my simon site to a subdomain, I copied the deployFiles.sh from the example code online. However, it didn't let me run it. I looked on stack overflow and found a command to run -- chmod +x deployFiles.sh -- and afterwards, it worked. I'm not quite sure what that did but it would be good to remember it.
