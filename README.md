@@ -17,3 +17,6 @@ Key features
 
 Update Feb 8
 When trying to upload my simon site to a subdomain, I copied the deployFiles.sh from the example code online. However, it didn't let me run it. I looked on stack overflow and found a command to run -- chmod +x deployFiles.sh -- and afterwards, it worked. I'm not quite sure what that did but it would be good to remember it.
+
+Update Feb 21
+After the Simon css project, I feel like I understand bootstrap a little better but I still need more practice. I'm also hoping I didn't set too high of a goal for my startup. I think the best way to go about it is have a clear goal/vision in mind and find how to achieve that goal in the absolute simplest way possible.
