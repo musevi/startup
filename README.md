@@ -20,3 +20,6 @@ When trying to upload my simon site to a subdomain, I copied the deployFiles.sh 
 
 Update Feb 21
 After the Simon css project, I feel like I understand bootstrap a little better but I still need more practice. I'm also hoping I didn't set too high of a goal for my startup. I think the best way to go about it is have a clear goal/vision in mind and find how to achieve that goal in the absolute simplest way possible.
+
+Update Feb 24
+I'm happy with how the HTML and CSS looks, I think it matches my vision really well. I know I'll have to change how I did the CSS and bootstrap stuff, I didn't even make a separate file for style. I'll have to update that.
