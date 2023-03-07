@@ -23,3 +23,6 @@ After the Simon css project, I feel like I understand bootstrap a little better 
 
 Update Feb 24
 I'm happy with how the HTML and CSS looks, I think it matches my vision really well. I know I'll have to change how I did the CSS and bootstrap stuff, I didn't even make a separate file for style. I'll have to update that.
+
+Update March 6
+I feel like even the basic SIMON javascript takes a lot of code for something relatively simple. Fortunately, JS is pretty similar to C++ so I don't think I'll be too lost but hopefully I'll be able to apply what I learned to my startup. I think how the SIMON application maintains and updates the scoring table will carry over really well to what I'm trying to do with my website.
