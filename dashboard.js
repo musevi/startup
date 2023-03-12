@@ -4,7 +4,9 @@ function addGoal() {
     let date = document.getElementById('deadline').value;
     let buddy = document.getElementById('buddy').value;
     let penalty = document.getElementById('penalty').value;
-    checkData(newgoal, date, buddy, penalty);
+    if (!(checkData(newgoal, date, buddy, penalty))) {
+        return;
+    }
     thisGoal = document.createElement('div');
     thisGoal.className = "row"
     goal = `
@@ -27,10 +29,20 @@ function addGoal() {
 
 function checkData(newgoal, date, buddy, penalty) {
     if(newgoal === '' || date ==='' || buddy === '' || penalty === '') {
-        console.log('error');
+
+        errormessage = document.createElement('div');
+        message = `
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> Be sure to fill all form fields.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>`
+        errormessage.innerHTML = message;
+        errorspace = document.getElementsByClassName("col-sm-8");
+        errorspace[0].appendChild(errormessage);
         return false;
     }else {
-        console.log('we chillin');
         return true;
     }
 }
