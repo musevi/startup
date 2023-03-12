@@ -4,6 +4,7 @@ function addGoal() {
     let date = document.getElementById('deadline').value;
     let buddy = document.getElementById('buddy').value;
     let penalty = document.getElementById('penalty').value;
+    checkData(newgoal, date, buddy, penalty);
     thisGoal = document.createElement('div');
     thisGoal.className = "row"
     goal = `
@@ -21,8 +22,15 @@ function addGoal() {
     thisGoal.innerHTML = goal;
     mainContainer = document.getElementsByClassName("tabletoedit");
     mainContainer[0].appendChild(thisGoal);
-    // mainContainer.getElementById("delete").addEventListener('click', deleteSomething(thisGoal))
-
+    //mainContainer[0].getElementsByClassName("checkmark").addEventListener('click', removeRow(thisGoal))
 }
 
-
+function checkData(newgoal, date, buddy, penalty) {
+    if(newgoal === '' || date ==='' || buddy === '' || penalty === '') {
+        console.log('error');
+        return false;
+    }else {
+        console.log('we chillin');
+        return true;
+    }
+}
