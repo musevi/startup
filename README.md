@@ -26,3 +26,6 @@ I'm happy with how the HTML and CSS looks, I think it matches my vision really w
 
 Update March 6
 I feel like even the basic SIMON javascript takes a lot of code for something relatively simple. Fortunately, JS is pretty similar to C++ so I don't think I'll be too lost but hopefully I'll be able to apply what I learned to my startup. I think how the SIMON application maintains and updates the scoring table will carry over really well to what I'm trying to do with my website.
+
+Update March 11
+Wow so I really despise Javascript. Not really, I think I just haven't given myself enough time to fully learn it but its getting better. I particularly find manipulating the DOM tricky, but found for some reason I learned that I need to use [0] after the variable I call getElementsByClassName from. 
