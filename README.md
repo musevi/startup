@@ -29,3 +29,6 @@ I feel like even the basic SIMON javascript takes a lot of code for something re
 
 Update March 11
 Wow so I really despise Javascript. Not really, I think I just haven't given myself enough time to fully learn it but its getting better. I particularly find manipulating the DOM tricky, but found for some reason I learned that I need to use [0] after the variable I call getElementsByClassName from. 
+
+Update March 22
+I think I'm starting to get the hang of the service part. I think the random quotes using fetch would work really well with my startup project. I'm glad we did the smaller express assignment first, and then just scaled it up for this one. I'll have to remember to put everything into a 'public' folder and the node stuff outside.
