@@ -32,3 +32,6 @@ Wow so I really despise Javascript. Not really, I think I just haven't given mys
 
 Update March 22
 I think I'm starting to get the hang of the service part. I think the random quotes using fetch would work really well with my startup project. I'm glad we did the smaller express assignment first, and then just scaled it up for this one. I'll have to remember to put everything into a 'public' folder and the node stuff outside.
+
+Update March 26
+Like the specifications say, I can't really see a difference between this and the service deliverable because most of the changes are behind the scenes. I like the instruction on handling credentials to keep them secure and make sure they don't end up somewhere online.
