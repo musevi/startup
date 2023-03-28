@@ -35,3 +35,6 @@ I think I'm starting to get the hang of the service part. I think the random quo
 
 Update March 26
 Like the specifications say, I can't really see a difference between this and the service deliverable because most of the changes are behind the scenes. I like the instruction on handling credentials to keep them secure and make sure they don't end up somewhere online.
+
+Update March 27
+I'll probably end up replicating a lot of this code for my startup so I'm trying to understand exactly how it works. Specifically the four endpoints contained in index.js to update the authorization cookie.
