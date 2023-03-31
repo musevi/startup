@@ -38,3 +38,6 @@ Like the specifications say, I can't really see a difference between this and th
 
 Update March 27
 I'll probably end up replicating a lot of this code for my startup so I'm trying to understand exactly how it works. Specifically the four endpoints contained in index.js to update the authorization cookie.
+
+Update March 29
+I think I messed something up with my database, it started when I accidently uploaded a simon deliverable to the same port I was using for my startup. I found out how to fix it, and now I have my startup on 4000 and simon on 5000. I also can't seem to get the login part to work-- it might be something with the .zprofile on my production enviroment? I have the credentials set up and everything but I'm not sure if that's still giving me trouble.
