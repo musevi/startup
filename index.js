@@ -4,8 +4,7 @@ const express = require('express');
 const app = express();
 const DB = require('./database.js');
 
-
-
+const authCookieName = 'token';
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 app.use(express.json());
@@ -72,10 +71,21 @@ secureApiRouter.use(async (req, res, next) => {
   }
 });
 
+app.use(function (err, req, res, next) {
+  res.status(500).send({ type: err.name, message: err.message });
+});
 
 app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
 });
+
+function setAuthCookie(res, authToken) {
+  res.cookie(authCookieName, authToken, {
+    secure: true,
+    httpOnly: true,
+    sameSite: 'strict',
+  });
+}
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
