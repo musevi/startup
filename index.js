@@ -1,9 +1,16 @@
+const cookieParser = require('cookie-parser');
+const bcrypt = require('bcrypt');
 const express = require('express');
 const app = express();
+const DB = require('./database.js');
+
+
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 app.use(express.json());
+
+app.use(cookieParser());
 
 app.use(express.static('public'));
 
@@ -17,7 +24,6 @@ apiRouter.post('/auth/create', async (req, res) => {
   } else {
     const user = await DB.createUser(req.body.email, req.body.password);
 
-    // Set the cookie
     setAuthCookie(res, user.token);
 
     res.send({

@@ -20,7 +20,7 @@
       </div>
     </nav>
 
-    <div class="container mt-5">
+    <div class="container mt-5" style="display:none;" id="loginControls">
       <div class="row">
         <div class="col-sm-8">
           <h1>Welcome</h1>
@@ -33,8 +33,8 @@
           />
           <input style="margin-top: 5px;"
             class="form-control"
-            type="text"
-            id="userName"
+            type="password"
+            id="userPassword"
             placeholder="Password"
           />
           <button class="btn btn-primary" style="margin-left: 5px; margin-top: 5px;" type="button" onclick="loginUser()">Login</button>
@@ -57,6 +57,34 @@
       </div>
     </div>
 
+    <div id="dashboardControls" style="display: none;">
+      <br>
+      <br>
+      <br>
+      <br>
+      <div id="currUserName"></div>
+      <button style="margin-left: 20px;" type="button" class="btn btn-primary" onclick="dashboard()">
+        Dashboard
+      </button>
+      <button style="margin-left: 5px;" type="button" class="btn btn-secondary" onclick="logout()">
+        Logout
+      </button>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+
     <div class="modal fade" id="msgModal" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content text-dark">
@@ -76,7 +104,13 @@
 
     <div class="mt-5 p-4 bg-dark text-white text-center">
       <p>© 2023 Usevitch Studios. All rights reserved. <a href="https://github.com/musevi/startup" target="_blank">Github</a></p>
+      <button onclick="setDisplay('loginControls', 'none'); setDisplay('dashboardControls', 'block');">switcharoo</button>
     </div>
     <script src="login.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

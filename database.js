@@ -35,3 +35,9 @@ async function createUser(email, password) {
   
   return user;
 }
+
+module.exports = {
+  getUser,
+  getUserByToken,
+  createUser,
+};
