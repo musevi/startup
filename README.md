@@ -41,3 +41,6 @@ I'll probably end up replicating a lot of this code for my startup so I'm trying
 
 Update March 29
 I think I messed something up with my database, it started when I accidently uploaded a simon deliverable to the same port I was using for my startup. I found out how to fix it, and now I have my startup on 4000 and simon on 5000. I also can't seem to get the login part to work-- it might be something with the .zprofile on my production enviroment? I have the credentials set up and everything but I'm not sure if that's still giving me trouble.
+
+Update April 8
+It makes sense changing the application from multi-page to single-page. Definitely more complicated, and there's a lot of reorganizing I'll need to do to convert my startup to a react app but it's possible. I just have to remember to install the bootstrap npm library, I forgot to do that on my production environment and couldn't figure out why it wasn't working. Another thing I have to remember is changing the class attribute to className so it doesn't conflict with the JavaScript class.
