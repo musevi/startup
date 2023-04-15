@@ -1,18 +1,17 @@
 
 (async () => {
-  console.log("in initial await")
   username = localStorage.getItem('userName');
   const url = `/api/goals/`+username
   const response = await fetch(url);
   const goallist = await response.json();
 
-  //console.log(JSON.parse(JSON.stringify(goallist)));
-  console.log(goallist);
-  console.log(goallist.usergoals[0].goal)
-  console.log(goallist.usergoals.length);
+  document.querySelector('#currUser').textContent = username;
+  document.querySelector('#numGoals').textContent = goallist.usergoals.length;
+  if(goallist.usergoals.length === 0) {
+    displayEmptyMessage();
+  }
 
   for(let i = 0; i < goallist.usergoals.length; i++) {
-    console.log("in the for loop");
     const newgoal = goallist.usergoals[i].goal;
     const date = goallist.usergoals[i].date;
     const buddy = goallist.usergoals[i].buddy;
@@ -21,16 +20,23 @@
   }
 })();
 
+function displayEmptyMessage() {
+  message = document.createElement('div');
+  emptymessage = `<p><em>You have no current goals. Add a goal to get started!</em></p>`
+  message.innerHTML= emptymessage;
+  mainContainer = document.getElementsByClassName("tabletoedit");
+  mainContainer[0].appendChild(message);
+}
+
 function showGoal(newgoal, date, buddy, penalty) {
   thisGoal = document.createElement('div');
   thisGoal.className = "row"
   goal = `
   <div class="col-sm-5">
-  <p>${newgoal}</p>
-  <label class="container">
-    <input type="checkbox">
-    <span class="checkmark"></span><em>Mark complete</em>
-  </label>
+  <p id="goal">${newgoal}</p>
+  <span id="${buddy}"></span>
+  <span id="${penalty}"></span>
+  <button style="margin-bottom: 5px;" type="button" id="${newgoal}" class="btn btn-secondary btn-sm" onclick="completeGoal(this)">Completed</button><button style="margin-left: 10px; margin-bottom: 5px;" type="button" class="btn btn-secondary btn-sm" onclick="incompleteGoal(this.parentElement)>Not completed</button>
   </div>
   <div class="col" style="text-align: center;">${date}</div>
   <div class="col" style="text-align: center;">${buddy}</div>
@@ -50,23 +56,24 @@ async function addGoal() {
     return;
   }
   await addGoalToDB(newgoal, date, buddy, penalty);
-  thisGoal = document.createElement('div');
-  thisGoal.className = "row"
-  goal = `
-  <div class="col-sm-5">
-  <p>${newgoal}</p>
-  <label class="container">
-    <input type="checkbox">
-    <span class="checkmark"></span><em>Mark complete</em>
-  </label>
-  </div>
-  <div class="col" style="text-align: center;">${date}</div>
-  <div class="col" style="text-align: center;">${buddy}</div>
-  <div class="col" style="text-align: center;">$ ${penalty}</div>
-  <hr/>`
-  thisGoal.innerHTML = goal;
-  mainContainer = document.getElementsByClassName("tabletoedit");
-  mainContainer[0].appendChild(thisGoal);
+  location.reload();
+  // thisGoal = document.createElement('div');
+  // thisGoal.className = "row"
+  // goal = `
+  // <div class="col-sm-5">
+  // <p>${newgoal}</p>
+  // <label class="container">
+  //   <input type="checkbox">
+  //   <span class="checkmark"></span><em>Mark complete</em>
+  // </label>
+  // </div>
+  // <div class="col" style="text-align: center;">${date}</div>
+  // <div class="col" style="text-align: center;">${buddy}</div>
+  // <div class="col" style="text-align: center;">$ ${penalty}</div>
+  // <hr/>`
+  // thisGoal.innerHTML = goal;
+  // mainContainer = document.getElementsByClassName("tabletoedit");
+  // mainContainer[0].appendChild(thisGoal);
   //mainContainer[0].getElementsByClassName("checkmark").addEventListener('click', removeRow(thisGoal))
 }
 
@@ -101,6 +108,19 @@ function checkData(newgoal, date, buddy, penalty) {
   }else {
     return true;
   }
+}
+
+async function completeGoal(completed) {
+  console.log(completed.id);
+
+  username = localStorage.getItem('userName');
+  const url = `/api/goals/`+username + `/` +completed.id;
+  const response = await fetch(url);
+  location.reload();
+}
+
+async function incompleteGoal(parent) {
+
 }
 
 function displayQuote(data) {

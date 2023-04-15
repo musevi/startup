@@ -39,7 +39,6 @@ async function createUser(email, password, goals) {
 }
 
 async function getGoals(user) {
-  console.log("in getGoals");
   const userGoals = await goalCollection.find({ user: user });
   return(userGoals.toArray());
 }
@@ -57,10 +56,16 @@ async function createGoal(user, newgoal, date, buddy, penalty) {
   return newGoal;
 }
 
+async function deleteGoal(user, goal) {
+  const goalToDelete = await goalCollection.findOneAndDelete({ user: user, goal: goal })
+  return;
+}
+
 module.exports = {
   getUser,
   getUserByToken,
   createUser,
   getGoals,
   createGoal,
+  deleteGoal,
 };

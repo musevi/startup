@@ -28,7 +28,7 @@
             <a class="nav-link" href="about.html">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Sign out</a>
+            <a class="nav-link" href="index.html">Account</a>
           </li>
         </ul>
       </div>
@@ -37,8 +37,8 @@
     <div class="container mt-5">
       <div class="row">
         <div class="col-sm-8">
-          <h2>Welcome, User</h2>
-          <h5>You have 2 active goals:</h5>
+          <h2>Welcome, <span id="currUser"></span></h2>
+          <h5>You have <span id="numGoals"></span> active goals:</h5>
           <div class="container mt-5">
             <div class="row" style="background-color: #C8C9CA;">
               <div class="col-sm-5" style="font-size: 25px;">Goal:</div>
@@ -48,7 +48,7 @@
             </div>
             <div class="tabletoedit">
               <hr>
-              <div class="row">
+              <!-- <div class="row">
                 <div class="col-sm-5">
                   <p>Finish job applications</p>
                   <label class="container">
@@ -73,7 +73,7 @@
                 <div class="col" style="text-align: center;">Bill</div>
                 <div class="col" style="text-align: center;">$ 10</div>
               </div>
-              <hr>
+              <hr> -->
             </div>
           </div>
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Add Goal</button>
@@ -107,17 +107,17 @@
           <h2 style="text-align: center">Updates</h2>
           <hr>
           <div class="text-center">
-            <p>No updates to show!</p>
-          </div>
-          <hr>
-          <div class="text-center">
             <p>You currently don't owe any penalties!</p>
           </div>
           <hr>
 
           <br>
+          <h4 style="text-align: center;">Daily inspirational quote:</h4>
           <div id="quote" class="quote-box bg-light text-dark"></div>
-          
+          <br>
+          <br>
+          <br>
+          <br>
         </div>
       </div>
     </div>

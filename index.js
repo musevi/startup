@@ -65,9 +65,14 @@ apiRouter.post('/setgoal', async (req, res) => {
 });
 
 apiRouter.get('/goals/:username', async (req, res) => {
-  console.log("here");
   const usergoals = await DB.getGoals(req.params.username);
   res.send({usergoals});
+  return;
+});
+
+apiRouter.get('/goals/:username/:goaltodelete', async (req, res) => {
+  await DB.deleteGoal(req.params.username, req.params.goaltodelete);
+  res.send({})
   return;
 });
 
