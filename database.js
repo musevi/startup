@@ -15,6 +15,7 @@ const url = `mongodb+srv://${userName}:${password}@${hostname}`;
 const client = new MongoClient(url);
 const userCollection = client.db('startup').collection('user');
 const goalCollection = client.db('startup').collection('goals');
+const penaltyCollenction = client.db('startup').collection('penalties');
 
 function getUser(email) {
   return userCollection.findOne({ email: email });
@@ -43,6 +44,22 @@ async function getGoals(user) {
   return(userGoals.toArray());
 }
 
+async function getPenalties(user) {
+  const userPenalties = await penaltyCollenction.find({ user: user });
+  return(userPenalties.toArray());
+}
+
+async function createPenalty(user, buddy, penalty) {
+  const newPenalty = {
+    user: user,
+    buddy: buddy,
+    penalty: penalty,
+  };
+  await penaltyCollenction.insertOne(newPenalty);
+
+  return newPenalty;
+}
+
 async function createGoal(user, newgoal, date, buddy, penalty) {
   const newGoal = {
     user: user,
@@ -61,6 +78,11 @@ async function deleteGoal(user, goal) {
   return;
 }
 
+async function deletePenalty(user, buddy, penalty) {
+  const penaltyToDelete = await penaltyCollenction.findOneAndDelete({ user: user, buddy: buddy, penalty: penalty })
+  return;
+}
+
 module.exports = {
   getUser,
   getUserByToken,
@@ -68,4 +90,7 @@ module.exports = {
   getGoals,
   createGoal,
   deleteGoal,
+  createPenalty,
+  getPenalties,
+  deletePenalty,
 };

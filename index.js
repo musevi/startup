@@ -64,17 +64,35 @@ apiRouter.post('/setgoal', async (req, res) => {
   return;
 });
 
+apiRouter.post('/setpenalty', async (req, res) => {
+  const newpenalty = await DB.createPenalty(req.body.user, req.body.buddy, req.body.penalty);
+  res.send({});
+  return;
+});
+
 apiRouter.get('/goals/:username', async (req, res) => {
   const usergoals = await DB.getGoals(req.params.username);
   res.send({usergoals});
   return;
 });
 
+apiRouter.get('/penalties/:username', async (req, res) => {
+  const userpenalties = await DB.getPenalties(req.params.username);
+  res.send({userpenalties});
+  return;
+})
+
 apiRouter.get('/goals/:username/:goaltodelete', async (req, res) => {
   await DB.deleteGoal(req.params.username, req.params.goaltodelete);
   res.send({})
   return;
 });
+
+apiRouter.get('/penalties/:username/:buddy/:penalty', async (req, res) => {
+  await DB.deletePenalty(req.params.username, req.params.buddy, req.params.penalty);
+  res.send({});
+  return;
+})
 
 var secureApiRouter = express.Router();
 apiRouter.use(secureApiRouter);

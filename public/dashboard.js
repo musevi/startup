@@ -1,14 +1,21 @@
 
 (async () => {
   username = localStorage.getItem('userName');
-  const url = `/api/goals/`+username
+  const url = `/api/goals/`+username;
   const response = await fetch(url);
   const goallist = await response.json();
+
+  const url2 = `api/penalties/`+username;
+  const response2 = await fetch(url2);
+  const penaltylist = await response2.json();
 
   document.querySelector('#currUser').textContent = username;
   document.querySelector('#numGoals').textContent = goallist.usergoals.length;
   if(goallist.usergoals.length === 0) {
     displayEmptyMessage();
+  }
+  if(penaltylist.userpenalties.length === 0) {
+    displayEmptyUpdates();
   }
 
   for(let i = 0; i < goallist.usergoals.length; i++) {
@@ -17,6 +24,11 @@
     const buddy = goallist.usergoals[i].buddy;
     const penalty = goallist.usergoals[i].penalty;
     showGoal(newgoal, date, buddy, penalty);
+  }
+  for(let i = 0; i < penaltylist.userpenalties.length; i++) {
+    const buddy = penaltylist.userpenalties[i].buddy;
+    const penalty = penaltylist.userpenalties[i].penalty;
+    showPenalty(buddy, penalty);
   }
 })();
 
@@ -28,15 +40,41 @@ function displayEmptyMessage() {
   mainContainer[0].appendChild(message);
 }
 
+function displayEmptyUpdates() {
+  message = document.createElement('div');
+  emptymessage = `<p><em>You currently don't owe any penalties!</em></p><hr>`
+  message.innerHTML= emptymessage;
+  mainContainer = document.getElementsByClassName("updatestoedit");
+  mainContainer[0].appendChild(message);
+}
+
+function showPenalty(buddy, penalty) {
+  thisPenalty = document.createElement('div');
+  addedpenalty = `<div><span id="${buddy}"></span><span id="${penalty}"></span><p>You owe ${buddy} $${penalty}!<p><button type="button" class="btn btn-secondary btn-sm" onclick="dismissPenalty(this.parentElement.parentElement)">Paid</button><hr></div>`;
+  thisPenalty.innerHTML = addedpenalty;
+  mainContainer = document.getElementsByClassName("updatestoedit");
+  mainContainer[0].appendChild(thisPenalty);
+}
+
+async function dismissPenalty(parent) {
+  username = localStorage.getItem('userName');
+  buddy = parent.children[0].id;
+  penalty = parent.children[1].id;
+
+  const url = `/api/penalties/`+username + `/` +buddy + `/` +penalty;
+  const response = await fetch(url);
+  location.reload();
+}
+
 function showGoal(newgoal, date, buddy, penalty) {
   thisGoal = document.createElement('div');
   thisGoal.className = "row"
   goal = `
   <div class="col-sm-5">
-  <p id="goal">${newgoal}</p>
+  <p>${newgoal}</p>
   <span id="${buddy}"></span>
   <span id="${penalty}"></span>
-  <button style="margin-bottom: 5px;" type="button" id="${newgoal}" class="btn btn-secondary btn-sm" onclick="completeGoal(this)">Completed</button><button style="margin-left: 10px; margin-bottom: 5px;" type="button" class="btn btn-secondary btn-sm" onclick="incompleteGoal(this.parentElement)>Not completed</button>
+  <button style="margin-bottom: 5px;" type="button" id="${newgoal}" class="btn btn-secondary btn-sm" onclick="completeGoal(this)">Completed</button> <button style="margin-left: 10px; margin-bottom: 5px;" type="button" id="incomplete" class="btn btn-secondary btn-sm" onclick="incompleteGoal(this.parentElement)">Not completed</button>
   </div>
   <div class="col" style="text-align: center;">${date}</div>
   <div class="col" style="text-align: center;">${buddy}</div>
@@ -48,10 +86,10 @@ function showGoal(newgoal, date, buddy, penalty) {
 }
 
 async function addGoal() {
-  let newgoal = document.getElementById('goal').value;
-  let date = document.getElementById('deadline').value;
-  let buddy = document.getElementById('buddy').value;
-  let penalty = document.getElementById('penalty').value;
+  let newgoal = document.getElementById('newgoaltoadd').value;
+  let date = document.getElementById('newdeadlinetoadd').value;
+  let buddy = document.getElementById('newbuddytoadd').value;
+  let penalty = document.getElementById('newpenaltytoadd').value;
   if (!(checkData(newgoal, date, buddy, penalty))) {
     return;
   }
@@ -120,7 +158,20 @@ async function completeGoal(completed) {
 }
 
 async function incompleteGoal(parent) {
+  buddy = parent.children[1].id;
+  penalty = parent.children[2].id;
 
+  username = localStorage.getItem('userName');
+  const url = `/api/setpenalty`;
+  const response = await fetch(url, {
+    method: 'post',
+    body: JSON.stringify({ user: username, buddy: buddy, penalty: penalty }),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  });
+
+  completeGoal(parent.children[3]);
 }
 
 function displayQuote(data) {
