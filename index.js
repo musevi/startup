@@ -21,7 +21,7 @@ apiRouter.post('/auth/create', async (req, res) => {
   if (await DB.getUser(req.body.email)) {
     res.status(409).send({ msg: 'Existing user' });
   } else {
-    const user = await DB.createUser(req.body.email, req.body.password);
+    const user = await DB.createUser(req.body.email, req.body.password, req.body.goals);
 
     setAuthCookie(res, user.token);
 
@@ -56,6 +56,19 @@ apiRouter.get('/user/:email', async (req, res) => {
     return;
   }
   res.status(404).send({ msg: 'Unknown' });
+});
+
+apiRouter.post('/setgoal', async (req, res) => {
+  const newgoal = await DB.createGoal(req.body.user, req.body.goal, req.body.date, req.body.buddy, req.body.penalty);
+  res.send({});
+  return;
+});
+
+apiRouter.get('/goals/:username', async (req, res) => {
+  console.log("here");
+  const usergoals = await DB.getGoals(req.params.username);
+  res.send({usergoals});
+  return;
 });
 
 var secureApiRouter = express.Router();
