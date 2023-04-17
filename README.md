@@ -44,3 +44,6 @@ I think I messed something up with my database, it started when I accidently upl
 
 Update April 8
 It makes sense changing the application from multi-page to single-page. Definitely more complicated, and there's a lot of reorganizing I'll need to do to convert my startup to a react app but it's possible. I just have to remember to install the bootstrap npm library, I forgot to do that on my production environment and couldn't figure out why it wasn't working. Another thing I have to remember is changing the class attribute to className so it doesn't conflict with the JavaScript class.
+
+Update April 17
+I definitely learned a lot making my website fully function will mongo, credentials, etc. I found it pretty tricky, especially communicating with my database but I figured it out. I don't think I'll be able to incorporate 100% of my original ideas but I'm happy with how far I was able to get. I think I'll keep working on this after the semester to keep learning more.
